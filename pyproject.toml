@@ -1,0 +1,26 @@
+[project]
+name = "1nlp-proj1"
+version = "0.1.0"
+description = "NLP Project 1: abductive commonsense reasoning (ART) with frozen word embeddings and RNNs"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch",
+    "lightning",
+    "wandb",
+    "datasets",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "ipykernel",
+    "ipywidgets",
+    "nltk",
+]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu126" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true

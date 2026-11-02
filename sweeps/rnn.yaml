@@ -1,0 +1,29 @@
+# Architecture 2 (2-layer GRU + classifier), grid search with seed 42.
+# Questions: which learning rate works, how much regularization (dropout, weight decay)
+# and how large does the GRU's hidden state have to be? Classifier fixed at 256.
+# 4 x 3 x 2 x 2 = 48 runs
+program: src/train.py
+project: nlp-proj1-final
+method: grid
+metric:
+  name: val_acc
+  goal: maximize
+parameters:
+  architecture:
+    value: rnn
+  learning_rate:
+    values: [0.01, 0.001, 0.0001, 0.00001]
+  rnn_hidden:
+    values: [128, 256, 512]
+  dropout:
+    values: [0.2, 0.5]
+  weight_decay:
+    values: [0.01, 0.1]
+command:
+  - ${env}
+  - python
+  - -m
+  - src.train
+  - ${args}
+  - --tags
+  - sweep
